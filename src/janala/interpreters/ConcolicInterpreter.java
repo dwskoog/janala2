@@ -873,6 +873,8 @@ public class ConcolicInterpreter implements IVisitor {
                 instance = (ObjectValue) popped;
             } else {
                 System.out.printf("isInstance=%b, inst=%s\n\n", isInstance, inst);
+                System.out.println("currentFrame=\n\t"+currentFrame+"\n");
+                System.out.println("tmp=\n\t"+tmp+"\n");
                 //System.out.println("Frame so far:"+tmp);
                 throw new RuntimeException("Attempted to cast to ObjectValue:"+popped.getClass().getCanonicalName());
             }
