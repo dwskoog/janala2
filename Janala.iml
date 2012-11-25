@@ -27,6 +27,15 @@
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="scala-library" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/out/production/tests" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

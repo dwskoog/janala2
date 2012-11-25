@@ -1,4 +1,4 @@
-package tests
+package tests.scala
 
 import tests.java15.util.Arrays
 import janala.Main
@@ -8,7 +8,8 @@ object QuickSortScala {
   def fill(data: Array[Int]): Unit = {
     def fill(i: Int): Unit = {
       data(i) = Main.readInt(0)
-      System.out.println("data: " + data(i))
+      System.out.print("data: ")
+      System.out.println(data(i))
       Main.MakeSymbolic(data(i))
       if (i < data.length-1) fill(i+1)
     }
@@ -17,7 +18,8 @@ object QuickSortScala {
 
   def print(data: Array[Int]): Unit = {
     def print(i: Int): Unit = {
-      System.out.print(data(i) + " ");
+      System.out.print(data(i))
+      System.out.print(" ")
       if (i < data.length -1) print(i+1)
     }
     print(0)
@@ -25,20 +27,21 @@ object QuickSortScala {
 
   def check(data: Array[Int]): Unit = {
     def check(i: Int): Unit = {
-      assert(data(i) <= data(i + 1));
+      assert(data(i) <= data(i + 1))
       if (i < data.length - 2) check(i+1)
     }
   }
 
   def main(args: Array[String]) {
     val N: Int = 4
-    System.out.println("In main..." + N)
+    System.out.print("In main...")
+    System.out.println(N)
     var data = new Array[Int](N)
     fill(data)
 
-    Arrays.sort(data);
+    Arrays.sort(data)
     print(data)
-    System.out.println();
+    System.out.println()
     check(data)
 
     N

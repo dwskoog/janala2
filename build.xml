@@ -41,9 +41,9 @@
     <path id="janala.classpath">
         <pathelement location="out/production/janala"/>
         <pathelement location="out/production/tests"/>
-        <pathelement location="lib/asm-all-3.3.1.jar"/>
-        <pathelement location="lib/choco-solver-2.1.4.jar"/>
-        <pathelement location="lib/trove-3.0.3.jar"/>
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
         <fileset dir="${env.SCALA_HOME}/lib/">
             <include name="*.jar"/>
         </fileset>
