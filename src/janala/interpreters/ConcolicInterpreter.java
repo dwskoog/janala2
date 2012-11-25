@@ -72,7 +72,7 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     private void checkAndSetException() {
-        if (!(next instanceof SPECIAL) || ((SPECIAL)next).i!=0) {
+        if (!(next instanceof SPECIAL) || ((SPECIAL) next).i != 0) {
             currentFrame.clear();
             currentFrame.push(PlaceHolder.instance);
         }
@@ -81,7 +81,7 @@ public class ConcolicInterpreter implements IVisitor {
     private void checkAndSetBranch(ConstraintAndResult cr) {
         cr.result = false;
         if (next instanceof SPECIAL) {
-            if (((SPECIAL)next).i==1) {
+            if (((SPECIAL) next).i == 1) {
                 cr.result = true;
             }
         }
@@ -94,8 +94,8 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitAALOAD(AALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,8 +106,8 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitAASTORE(AASTORE inst) {
         try {
             Value value = currentFrame.pop();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,7 +125,7 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitANEWARRAY(ANEWARRAY inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
             ObjectValue tmp = new ObjectValue(i1.concrete);
             currentFrame.push(tmp);
         } catch (Exception e) {
@@ -140,7 +140,7 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitARRAYLENGTH(ARRAYLENGTH inst) {
         try {
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(new IntValue(ref.concrete.length));
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,8 +160,8 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitBALOAD(BALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,8 +172,8 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitBASTORE(BASTORE inst) {
         try {
             Value value = currentFrame.pop();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
@@ -187,8 +187,8 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitCALOAD(CALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,8 +199,8 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitCASTORE(CASTORE inst) {
         try {
             Value value = currentFrame.pop();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
@@ -213,30 +213,30 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitD2F(D2F inst) {
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push(d1.D2F());
     }
 
     public void visitD2I(D2I inst) {
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push(d1.D2I());
     }
 
     public void visitD2L(D2L inst) {
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.D2L());
     }
 
     public void visitDADD(DADD inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.DADD(d2));
     }
 
     public void visitDALOAD(DALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push2(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -247,8 +247,8 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitDASTORE(DASTORE inst) {
         try {
             Value value = currentFrame.pop2();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
@@ -257,14 +257,14 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitDCMPG(DCMPG inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push(d1.DCMPG(d2));
     }
 
     public void visitDCMPL(DCMPL inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push(d1.DCMPL(d2));
     }
 
@@ -277,8 +277,8 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitDDIV(DDIV inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.DDIV(d2));
     }
 
@@ -287,19 +287,19 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitDMUL(DMUL inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.DMUL(d2));
     }
 
     public void visitDNEG(DNEG inst) {
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.DNEG());
     }
 
     public void visitDREM(DREM inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.DREM(d2));
     }
 
@@ -312,8 +312,8 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitDSUB(DSUB inst) {
-        DoubleValue d2 = (DoubleValue)currentFrame.pop2();
-        DoubleValue d1 = (DoubleValue)currentFrame.pop2();
+        DoubleValue d2 = (DoubleValue) currentFrame.pop2();
+        DoubleValue d1 = (DoubleValue) currentFrame.pop2();
         currentFrame.push2(d1.DSUB(d2));
     }
 
@@ -345,30 +345,30 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitF2D(F2D inst) {
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push2(f1.F2D());
     }
 
     public void visitF2I(F2I inst) {
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.F2I());
     }
 
     public void visitF2L(F2L inst) {
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push2(f1.F2L());
     }
 
     public void visitFADD(FADD inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FADD(f2));
     }
 
     public void visitFALOAD(FALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -379,8 +379,8 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitFASTORE(FASTORE inst) {
         try {
             Value value = currentFrame.pop();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
@@ -389,14 +389,14 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitFCMPG(FCMPG inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FCMPG(f2));
     }
 
     public void visitFCMPL(FCMPL inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FCMPL(f2));
     }
 
@@ -413,8 +413,8 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitFDIV(FDIV inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FDIV(f2));
     }
 
@@ -423,19 +423,19 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitFMUL(FMUL inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FMUL(f2));
     }
 
     public void visitFNEG(FNEG inst) {
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FNEG());
     }
 
     public void visitFREM(FREM inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FREM(f2));
     }
 
@@ -448,16 +448,16 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitFSUB(FSUB inst) {
-        FloatValue f2 = (FloatValue)currentFrame.pop();
-        FloatValue f1 = (FloatValue)currentFrame.pop();
+        FloatValue f2 = (FloatValue) currentFrame.pop();
+        FloatValue f1 = (FloatValue) currentFrame.pop();
         currentFrame.push(f1.FSUB(f2));
     }
 
     public void visitGETFIELD(GETFIELD inst) {
         try {
             ObjectInfo oi = cnames.get(inst.cIdx);
-            FieldInfo fi = oi.get(inst.fIdx,false);
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            FieldInfo fi = oi.get(inst.fIdx, false);
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             if (inst.desc.startsWith("D") || inst.desc.startsWith("J")) {
                 currentFrame.push2(ref.getField(fi.fieldId));
             } else {
@@ -473,7 +473,7 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitGETSTATIC(GETSTATIC inst) {
         try {
             ObjectInfo oi = cnames.get(inst.cIdx);
-            FieldInfo fi = oi.get(inst.fIdx,true);
+            FieldInfo fi = oi.get(inst.fIdx, true);
             if (inst.desc.startsWith("D") || inst.desc.startsWith("J")) {
                 currentFrame.push2(oi.getStaticField(fi.fieldId));
             } else {
@@ -488,97 +488,97 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitGETVALUE_Object(GETVALUE_Object inst) {
         Value peek = currentFrame.peek();
         Value tmp;
-        if (peek == PlaceHolder.instance || (((ObjectValue)peek).address != -1 && ((ObjectValue)peek).address != inst.v) ) {
+        if (peek == PlaceHolder.instance || (((ObjectValue) peek).address != -1 && ((ObjectValue) peek).address != inst.v)) {
             //if (peek != PlaceHolder.instance)
             //    logger.log(Level.WARNING, "** Failed to match " + currentFrame.peek() + " and " + inst.v);
             logger.log(Level.FINE, "** Failed to match " + currentFrame.peek() + " and " + inst.v);
             currentFrame.pop();
             tmp = objects.get(inst.v);
-            if (tmp!=null) {
+            if (tmp != null) {
                 currentFrame.push(tmp);
-            } else if (inst.v==0) {
+            } else if (inst.v == 0) {
                 currentFrame.push(ObjectValue.NULL);
             } else {
                 if (inst.isString) {
-                    currentFrame.push(tmp = new StringValue(inst.string,inst.v));
+                    currentFrame.push(tmp = new StringValue(inst.string, inst.v));
                 } else {
-                    currentFrame.push(tmp = new ObjectValue(100,inst.v));
+                    currentFrame.push(tmp = new ObjectValue(100, inst.v));
                 }
-                objects.put(inst.v,tmp);
+                objects.put(inst.v, tmp);
             }
-        } else if (((ObjectValue)peek).address == -1) {
+        } else if (((ObjectValue) peek).address == -1) {
             if (inst.v == 0) {
-                logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+                logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
                 currentFrame.pop();
                 currentFrame.push(ObjectValue.NULL);
             } else {
-                ((ObjectValue)peek).setAddress(inst.v);
-                objects.put(inst.v,peek);
+                ((ObjectValue) peek).setAddress(inst.v);
+                objects.put(inst.v, peek);
             }
         }
 //        throw new RuntimeException("Unimplemented instruction "+inst);
     }
 
     public void visitGETVALUE_boolean(GETVALUE_boolean inst) {
-        if (currentFrame.peek()==PlaceHolder.instance || ((IntValue)currentFrame.peek()).concrete != (inst.v?1:0)) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek() == PlaceHolder.instance || ((IntValue) currentFrame.peek()).concrete != (inst.v ? 1 : 0)) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop();
-            
-            currentFrame.push(new IntValue(inst.v?1:0));
+
+            currentFrame.push(new IntValue(inst.v ? 1 : 0));
         }
     }
 
     public void visitGETVALUE_byte(GETVALUE_byte inst) {
-        if (currentFrame.peek()==PlaceHolder.instance || ((IntValue)currentFrame.peek()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek() == PlaceHolder.instance || ((IntValue) currentFrame.peek()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop();
             currentFrame.push(new IntValue(inst.v));
         }
     }
 
     public void visitGETVALUE_char(GETVALUE_char inst) {
-        if (currentFrame.peek()==PlaceHolder.instance || ((IntValue)currentFrame.peek()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek() == PlaceHolder.instance || ((IntValue) currentFrame.peek()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop();
             currentFrame.push(new IntValue(inst.v));
         }
     }
 
     public void visitGETVALUE_double(GETVALUE_double inst) {
-        if (currentFrame.peek2()==PlaceHolder.instance || ((DoubleValue)currentFrame.peek2()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek2() == PlaceHolder.instance || ((DoubleValue) currentFrame.peek2()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop2();
             currentFrame.push2(new DoubleValue(inst.v));
         }
     }
 
     public void visitGETVALUE_float(GETVALUE_float inst) {
-        if (currentFrame.peek()==PlaceHolder.instance || ((FloatValue)currentFrame.peek()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek() == PlaceHolder.instance || ((FloatValue) currentFrame.peek()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop();
             currentFrame.push(new FloatValue(inst.v));
         }
     }
 
     public void visitGETVALUE_int(GETVALUE_int inst) {
-        if (currentFrame.peek()==PlaceHolder.instance || ((IntValue)currentFrame.peek()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek() == PlaceHolder.instance || ((IntValue) currentFrame.peek()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop();
             currentFrame.push(new IntValue(inst.v));
         }
     }
 
     public void visitGETVALUE_long(GETVALUE_long inst) {
-        if (currentFrame.peek2()==PlaceHolder.instance || ((LongValue)currentFrame.peek2()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek2() == PlaceHolder.instance || ((LongValue) currentFrame.peek2()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop2();
             currentFrame.push2(new LongValue(inst.v));
         }
     }
 
     public void visitGETVALUE_short(GETVALUE_short inst) {
-        if (currentFrame.peek()==PlaceHolder.instance || ((IntValue)currentFrame.peek()).concrete != inst.v) {
-            logger.log(Level.FINE,"** Failed to match {0} and "+inst.v, currentFrame.peek());
+        if (currentFrame.peek() == PlaceHolder.instance || ((IntValue) currentFrame.peek()).concrete != inst.v) {
+            logger.log(Level.FINE, "** Failed to match {0} and " + inst.v, currentFrame.peek());
             currentFrame.pop();
             currentFrame.push(new IntValue(inst.v));
         }
@@ -591,45 +591,45 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitI2B(I2B inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.I2B());
     }
 
     public void visitI2C(I2C inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.I2C());
     }
 
     public void visitI2D(I2D inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push2(i1.I2D());
     }
 
     public void visitI2F(I2F inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.I2F());
     }
 
     public void visitI2L(I2L inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push2(i1.I2L());
     }
 
     public void visitI2S(I2S inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.I2S());
     }
 
     public void visitIADD(IADD inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.IADD(i2));
     }
 
     public void visitIALOAD(IALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -638,17 +638,17 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitIAND(IAND inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.IAND(i2));
     }
 
     public void visitIASTORE(IASTORE inst) {
         try {
             Value value = currentFrame.pop();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
-            ref.setField(i.concrete,value);
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
+            ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -685,8 +685,8 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitIDIV(IDIV inst) {
         try {
-            IntValue i2 = (IntValue)currentFrame.pop();
-            IntValue i1 = (IntValue)currentFrame.pop();
+            IntValue i2 = (IntValue) currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
             currentFrame.push(i1.IDIV(i2));
         } catch (Exception e) {
             e.printStackTrace();
@@ -695,127 +695,127 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitIFEQ(IFEQ inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IFEQ();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFGE(IFGE inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IFGE();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFGT(IFGT inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IFGT();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFLE(IFLE inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IFLE();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFLT(IFLT inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IFLT();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFNE(IFNE inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IFNE();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFNONNULL(IFNONNULL inst) {
-        ObjectValue o1 = (ObjectValue)currentFrame.pop();
+        ObjectValue o1 = (ObjectValue) currentFrame.pop();
         ConstraintAndResult result = o1.IFNONNULL();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIFNULL(IFNULL inst) {
-        ObjectValue o1 = (ObjectValue)currentFrame.pop();
+        ObjectValue o1 = (ObjectValue) currentFrame.pop();
         ConstraintAndResult result = o1.IFNULL();
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ACMPEQ(IF_ACMPEQ inst) {
-        ObjectValue o2 = (ObjectValue)currentFrame.pop();
-        ObjectValue o1 = (ObjectValue)currentFrame.pop();
+        ObjectValue o2 = (ObjectValue) currentFrame.pop();
+        ObjectValue o1 = (ObjectValue) currentFrame.pop();
         ConstraintAndResult result = o1.IF_ACMPEQ(o2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ACMPNE(IF_ACMPNE inst) {
-        ObjectValue o2 = (ObjectValue)currentFrame.pop();
-        ObjectValue o1 = (ObjectValue)currentFrame.pop();
+        ObjectValue o2 = (ObjectValue) currentFrame.pop();
+        ObjectValue o1 = (ObjectValue) currentFrame.pop();
         ConstraintAndResult result = o1.IF_ACMPNE(o2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ICMPEQ(IF_ICMPEQ inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IF_ICMPEQ(i2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ICMPGE(IF_ICMPGE inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IF_ICMPGE(i2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ICMPGT(IF_ICMPGT inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IF_ICMPGT(i2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ICMPLE(IF_ICMPLE inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IF_ICMPLE(i2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ICMPLT(IF_ICMPLT inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IF_ICMPLT(i2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIF_ICMPNE(IF_ICMPNE inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         ConstraintAndResult result = i1.IF_ICMPNE(i2);
         checkAndSetBranch(result);
-        history.checkAndSetBranch(result,inst.iid);
+        history.checkAndSetBranch(result, inst.iid);
     }
 
     public void visitIINC(IINC inst) {
-        IntValue i1 = (IntValue)currentFrame.getLocal(inst.var);
+        IntValue i1 = (IntValue) currentFrame.getLocal(inst.var);
         currentFrame.setLocal(inst.var, i1.IINC(inst.increment));
     }
 
@@ -824,13 +824,13 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitIMUL(IMUL inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.IMUL(i2));
     }
 
     public void visitINEG(INEG inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.INEG());
     }
 
@@ -848,9 +848,9 @@ public class ConcolicInterpreter implements IVisitor {
         Type[] types = Type.getArgumentTypes(desc);
         Type retType = Type.getReturnType(desc);
         int nReturnWords;
-        if (retType==Type.DOUBLE_TYPE || retType==Type.LONG_TYPE) {
+        if (retType == Type.DOUBLE_TYPE || retType == Type.LONG_TYPE) {
             nReturnWords = 2;
-        } else if (retType==Type.VOID_TYPE) {
+        } else if (retType == Type.VOID_TYPE) {
             nReturnWords = 0;
         } else {
             nReturnWords = 1;
@@ -859,8 +859,8 @@ public class ConcolicInterpreter implements IVisitor {
         stack.push(tmp = new Frame(nReturnWords));
         int len = types.length;
         Value[] tmpValues = new Value[len];
-        for (int i = len-1; i>=0; i--) {
-            if (types[i]==Type.DOUBLE_TYPE || types[i]==Type.LONG_TYPE) {
+        for (int i = len - 1; i >= 0; i--) {
+            if (types[i] == Type.DOUBLE_TYPE || types[i] == Type.LONG_TYPE) {
                 tmpValues[i] = currentFrame.pop2();
             } else {
                 tmpValues[i] = currentFrame.pop();
@@ -868,11 +868,11 @@ public class ConcolicInterpreter implements IVisitor {
         }
         ObjectValue instance = null;
         if (isInstance) {
-            instance =  (ObjectValue)currentFrame.pop();
+            instance = (ObjectValue) currentFrame.pop();
             tmp.addLocal(instance);
         }
-        for (int i=0; i<len; i++) {
-            if (types[i]==Type.DOUBLE_TYPE || types[i]==Type.LONG_TYPE) {
+        for (int i = 0; i < len; i++) {
+            if (types[i] == Type.DOUBLE_TYPE || types[i] == Type.LONG_TYPE) {
                 tmp.addLocal2(tmpValues[i]);
             } else {
                 tmp.addLocal(tmpValues[i]);
@@ -882,15 +882,15 @@ public class ConcolicInterpreter implements IVisitor {
 
         if (next instanceof INVOKEMETHOD_END || next instanceof INVOKEMETHOD_EXCEPTION || next == null) {
             if (isInstance) {
-                currentFrame.ret = instance.invokeMethod(name,tmpValues);
+                currentFrame.ret = instance.invokeMethod(name, tmpValues);
             } else {
 //                checkAssumption(owner,name,tmpValues);
-                currentFrame.ret = StaticInvocation.invokeMethod(inst.iid,owner,name,tmpValues, history);
+                currentFrame.ret = StaticInvocation.invokeMethod(inst.iid, owner, name, tmpValues, history);
             }
         }
     }
 
-//    private void checkAssumption(String owner, String name, Value[] tmpValues) {
+    //    private void checkAssumption(String owner, String name, Value[] tmpValues) {
 //        if (owner.equals("janala/Main") && name.equals("Assume") && tmpValues.length==1) {
 //            if (((IntValue)tmpValues[0]).concrete!=0) {
 //                history.setLastBranchDone();
@@ -915,15 +915,15 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitIOR(IOR inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.IOR(i2));
     }
 
     public void visitIREM(IREM inst) {
         try {
-            IntValue i2 = (IntValue)currentFrame.pop();
-            IntValue i1 = (IntValue)currentFrame.pop();
+            IntValue i2 = (IntValue) currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
             currentFrame.push(i1.IREM(i2));
         } catch (Exception e) {
             e.printStackTrace();
@@ -936,14 +936,14 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitISHL(ISHL inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.ISHL(i2));
     }
 
     public void visitISHR(ISHR inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.ISHR(i2));
     }
 
@@ -952,20 +952,20 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitISUB(ISUB inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.ISUB(i2));
     }
 
     public void visitIUSHR(IUSHR inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.IUSHR(i2));
     }
 
     public void visitIXOR(IXOR inst) {
-        IntValue i2 = (IntValue)currentFrame.pop();
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i2 = (IntValue) currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         currentFrame.push(i1.IXOR(i2));
     }
 
@@ -973,31 +973,31 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitL2D(L2D inst) {
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.L2D());
     }
 
     public void visitL2F(L2F inst) {
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push(i1.L2F());
     }
 
     public void visitL2I(L2I inst) {
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push(i1.L2I());
     }
 
     public void visitLADD(LADD inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LADD(i2));
     }
 
     public void visitLALOAD(LALOAD inst) {
         try {
-        IntValue i1 = (IntValue)currentFrame.pop();
-        ObjectValue ref = (ObjectValue)currentFrame.pop();
-        currentFrame.push2(ref.getField(i1.concrete));
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
+            currentFrame.push2(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1005,17 +1005,17 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitLAND(LAND inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LAND(i2));
     }
 
     public void visitLASTORE(LASTORE inst) {
         try {
             Value value = currentFrame.pop2();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
-            ref.setField(i.concrete,value);
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
+            ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1023,8 +1023,8 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitLCMP(LCMP inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push(i1.LCMP(i2));
     }
 
@@ -1042,13 +1042,13 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitLDC_Object(LDC_Object inst) {
         Value tmp = objects.get(inst.c);
-        if (tmp!=null) {
+        if (tmp != null) {
             currentFrame.push(tmp);
-        } else if (inst.c==0) {
+        } else if (inst.c == 0) {
             currentFrame.push(ObjectValue.NULL);
         } else {
-            currentFrame.push(tmp = new ObjectValue(100,inst.c));
-            objects.put(inst.c,tmp);
+            currentFrame.push(tmp = new ObjectValue(100, inst.c));
+            objects.put(inst.c, tmp);
         }
     }
 
@@ -1070,8 +1070,8 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitLDIV(LDIV inst) {
         try {
-            LongValue i2 = (LongValue)currentFrame.pop2();
-            LongValue i1 = (LongValue)currentFrame.pop2();
+            LongValue i2 = (LongValue) currentFrame.pop2();
+            LongValue i1 = (LongValue) currentFrame.pop2();
             currentFrame.push2(i1.LDIV(i2));
         } catch (Exception e) {
             e.printStackTrace();
@@ -1084,26 +1084,26 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitLMUL(LMUL inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LMUL(i2));
     }
 
     public void visitLNEG(LNEG inst) {
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LNEG());
     }
 
     public void visitLOR(LOR inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LOR(i2));
     }
 
     public void visitLREM(LREM inst) {
         try {
-            LongValue i2 = (LongValue)currentFrame.pop2();
-            LongValue i1 = (LongValue)currentFrame.pop2();
+            LongValue i2 = (LongValue) currentFrame.pop2();
+            LongValue i1 = (LongValue) currentFrame.pop2();
             currentFrame.push2(i1.LREM(i2));
         } catch (Exception e) {
             e.printStackTrace();
@@ -1116,14 +1116,14 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitLSHL(LSHL inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LSHL(i2));
     }
 
     public void visitLSHR(LSHR inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LSHR(i2));
     }
 
@@ -1132,20 +1132,20 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitLSUB(LSUB inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LSUB(i2));
     }
 
     public void visitLUSHR(LUSHR inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LUSHR(i2));
     }
 
     public void visitLXOR(LXOR inst) {
-        LongValue i2 = (LongValue)currentFrame.pop2();
-        LongValue i1 = (LongValue)currentFrame.pop2();
+        LongValue i2 = (LongValue) currentFrame.pop2();
+        LongValue i1 = (LongValue) currentFrame.pop2();
         currentFrame.push2(i1.LXOR(i2));
     }
 
@@ -1161,7 +1161,7 @@ public class ConcolicInterpreter implements IVisitor {
         try {
             ObjectInfo oi = cnames.get(inst.cIdx);
 //            currentFrame.push(new ObjectValue(oi.nFields));
-            currentFrame.push(ObjectFactory.create(oi.nFields,oi.className));
+            currentFrame.push(ObjectFactory.create(oi.nFields, oi.className));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1171,7 +1171,7 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitNEWARRAY(NEWARRAY inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
             ObjectValue tmp = new ObjectValue(i1.concrete);
             currentFrame.push(tmp);
         } catch (Exception e) {
@@ -1194,15 +1194,15 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitPUTFIELD(PUTFIELD inst) {
         try {
             ObjectInfo oi = cnames.get(inst.cIdx);
-            FieldInfo fi = oi.get(inst.fIdx,false);
+            FieldInfo fi = oi.get(inst.fIdx, false);
             Value value;
             if (inst.desc.startsWith("D") || inst.desc.startsWith("J")) {
                 value = currentFrame.pop2();
             } else {
                 value = currentFrame.pop();
             }
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
-            ref.setField(fi.fieldId,value);
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
+            ref.setField(fi.fieldId, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1212,14 +1212,14 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitPUTSTATIC(PUTSTATIC inst) {
         try {
             ObjectInfo oi = cnames.get(inst.cIdx);
-            FieldInfo fi = oi.get(inst.fIdx,true);
+            FieldInfo fi = oi.get(inst.fIdx, true);
             Value value;
             if (inst.desc.startsWith("D") || inst.desc.startsWith("J")) {
                 value = currentFrame.pop2();
             } else {
                 value = currentFrame.pop();
             }
-            oi.setField(fi.fieldId,value);
+            oi.setField(fi.fieldId, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1235,8 +1235,8 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitSALOAD(SALOAD inst) {
         try {
-            IntValue i1 = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
+            IntValue i1 = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
             currentFrame.push(ref.getField(i1.concrete));
         } catch (Exception e) {
             e.printStackTrace();
@@ -1247,9 +1247,9 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitSASTORE(SASTORE inst) {
         try {
             Value value = currentFrame.pop();
-            IntValue i = (IntValue)currentFrame.pop();
-            ObjectValue ref = (ObjectValue)currentFrame.pop();
-            ref.setField(i.concrete,value);
+            IntValue i = (IntValue) currentFrame.pop();
+            ObjectValue ref = (ObjectValue) currentFrame.pop();
+            ref.setField(i.concrete, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1277,15 +1277,15 @@ public class ConcolicInterpreter implements IVisitor {
     public void visitINVOKEMETHOD_END(INVOKEMETHOD_END inst) {
         Frame old = stack.pop();
         currentFrame = stack.peek();
-        if (old.nReturnWords==2) {
+        if (old.nReturnWords == 2) {
             currentFrame.push2(old.ret);
-        } else if (old.nReturnWords==1) {
+        } else if (old.nReturnWords == 1) {
             currentFrame.push(old.ret);
         }
     }
 
     public void visitMAKE_SYMBOLIC(MAKE_SYMBOLIC inst) {
-        if (currentFrame.peek()==PlaceHolder.instance) {
+        if (currentFrame.peek() == PlaceHolder.instance) {
             currentFrame.peek2().MAKE_SYMBOLIC(symbol++);
             history.addInput(currentFrame.peek2());
         } else {
@@ -1295,7 +1295,7 @@ public class ConcolicInterpreter implements IVisitor {
     }
 
     public void visitSPECIAL(SPECIAL inst) {
-        
+
     }
 
     public void setNext(Instruction next) {
@@ -1304,9 +1304,9 @@ public class ConcolicInterpreter implements IVisitor {
 
     private ObjectValue initMultiArray(int[] dims, int idx) {
         ObjectValue tmp = new ObjectValue(dims[idx]);
-        if (idx<dims.length-1) {
-            for (int i=0; i<dims[idx]; i++) {
-                tmp.concrete[i] = initMultiArray(dims,idx+1);
+        if (idx < dims.length - 1) {
+            for (int i = 0; i < dims[idx]; i++) {
+                tmp.concrete[i] = initMultiArray(dims, idx + 1);
             }
         }
         return tmp;
@@ -1316,11 +1316,11 @@ public class ConcolicInterpreter implements IVisitor {
         int dims[] = new int[inst.dims];
         try {
             for (int i = 0; i < dims.length; i++) {
-                IntValue i1 = (IntValue)currentFrame.pop();
-                dims[dims.length-i-1] = i1.concrete;
+                IntValue i1 = (IntValue) currentFrame.pop();
+                dims[dims.length - i - 1] = i1.concrete;
 
             }
-            ObjectValue tmp = initMultiArray(dims,0);
+            ObjectValue tmp = initMultiArray(dims, 0);
             currentFrame.push(tmp);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1329,19 +1329,19 @@ public class ConcolicInterpreter implements IVisitor {
 
     public void visitLOOKUPSWITCH(LOOKUPSWITCH inst) {
         int[] keys = inst.keys;
-        IntValue i1 = (IntValue)currentFrame.pop();
+        IntValue i1 = (IntValue) currentFrame.pop();
         for (int key : keys) {
             ConstraintAndResult result = i1.IF_ICMPEQ(new IntValue(key));
-            history.checkAndSetBranch(result,inst.iid);
+            history.checkAndSetBranch(result, inst.iid);
             if (result.result) return;
         }
     }
 
     public void visitTABLESWITCH(TABLESWITCH inst) {
-        IntValue i1 = (IntValue)currentFrame.pop();
-        for (int i=inst.min; i<=inst.max; i++) {
+        IntValue i1 = (IntValue) currentFrame.pop();
+        for (int i = inst.min; i <= inst.max; i++) {
             ConstraintAndResult result = i1.IF_ICMPEQ(new IntValue(i));
-            history.checkAndSetBranch(result,inst.iid);
+            history.checkAndSetBranch(result, inst.iid);
             if (result.result) return;
         }
     }
