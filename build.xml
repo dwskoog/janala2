@@ -33,10 +33,10 @@
   -->
 
 <project basedir="." default="build" name="CATG">
-  <property environment="env"/>
-  <property name="debuglevel" value="source,lines,vars"/>
-  <property name="target" value="1.6"/>
-  <property name="source" value="1.6"/>
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
 
     <path id="janala.classpath">
         <pathelement location="out/production/janala"/>
@@ -44,12 +44,22 @@
         <pathelement location="lib/asm-all-3.3.1.jar"/>
         <pathelement location="lib/choco-solver-2.1.4.jar"/>
         <pathelement location="lib/trove-3.0.3.jar"/>
+        <fileset dir="${env.SCALA_HOME}/lib/">
+            <include name="*.jar"/>
+        </fileset>
     </path>
 
     <target name="init" depends="clean">
         <tstamp/>
         <mkdir dir="out/production/janala"/>
         <mkdir dir="out/production/tests"/>
+
+        <taskdef resource="scala/tools/ant/antlib.xml">
+            <classpath>
+                <pathelement location="${env.SCALA_HOME}/lib/scala-compiler.jar"/>
+                <pathelement location="${env.SCALA_HOME}/lib/scala-library.jar"/>
+            </classpath>
+        </taskdef>
     </target>
 
     <target name="clean">
@@ -61,6 +71,7 @@
 
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
+
         <javac debug="true" debuglevel="${debuglevel}" destdir="out/production/janala"
                source="${source}" target="${target}" includeantruntime="false">
             <!--<compilerarg value="-Xlint:deprecated"/>-->
@@ -73,6 +84,13 @@
 
     <target depends="build-project" name="build-tests">
         <echo message="${ant.project.name}: ${ant.file}"/>
+
+        <scalac srcdir="src/tests" destdir="out/production/tests" debuginfo="">
+            <classpath refid="janala.classpath"/>
+            <include name="**/*.scala"/>
+            <include name="**/*.java"/>
+        </scalac>
+
         <javac debug="true" debuglevel="${debuglevel}" destdir="out/production/tests"
                source="${source}" target="${target}" includeantruntime="false">
             <!--<compilerarg value="-Xlint:deprecated"/>-->

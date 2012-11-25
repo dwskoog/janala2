@@ -27,8 +27,11 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-export PATH=$PATH:yices-2.0.0/bin
-CLASSPATH=out/production/tests
+
+export PATH=$PATH:yices-2.1.0/bin
+CLASSPATH_BASE="out/production/tests;lib/asm-all-3.3.1.jar;lib/scala-library.jar"
+CLASSPATH_AGENT_RUN="$CLASSPATH_BASE;out/production/janala"
+CLASSPATH="$CLASSPATH_BASE;lib/trove-3.0.3.jar;lib/choco-solver-2.1.4.jar;lib/iagent.jar"
 iter=$1
 YOURPGM=$2
 
@@ -42,8 +45,8 @@ echo "Now testing $YOURPGM"
 while [ $i -le $iter ]
 do
 	echo "[Input $i]"
-    java -Djanala.conf=catg.conf -javaagent:"lib/iagent.jar"  -cp "$CLASSPATH:lib/asm-all-3.3.1.jar:out/production/janala" -ea $YOURPGM
-    java -Djanala.conf=catg.conf -Djanala.mainClass=$YOURPGM -Djanala.iteration=$i -cp "$CLASSPATH:lib/asm-all-3.3.1.jar:lib/trove-3.0.3.jar:lib/choco-solver-2.1.4.jar:lib/iagent.jar" -ea janala.interpreters.LoadAndExecuteInstructions
+    java -javaagent:"lib/iagent.jar"  -cp "$CLASSPATH_AGENT_RUN" -ea $YOURPGM
+    java -Djanala.mainClass=$YOURPGM -Djanala.iteration=$i -cp "$CLASSPATH" -ea janala.interpreters.LoadAndExecuteInstructions
 	if  [ -e "history" ]
 	then
 		echo -n ""
