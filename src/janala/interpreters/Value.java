@@ -33,6 +33,11 @@
 
 package janala.interpreters;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 /**
  * Author: Koushik Sen (ksen@cs.berkeley.edu)
  * Date: 6/19/12
@@ -45,5 +50,10 @@ public class Value {
 
     public Object getConcrete() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return new ReflectionToStringBuilder(this).toString();
     }
 }

@@ -868,7 +868,14 @@ public class ConcolicInterpreter implements IVisitor {
         }
         ObjectValue instance = null;
         if (isInstance) {
-            instance = (ObjectValue) currentFrame.pop();
+            Value popped = currentFrame.pop();
+            if (popped instanceof ObjectValue) {
+                instance = (ObjectValue) popped;
+            } else {
+                System.out.printf("isInstance=%b, inst=%s\n\n", isInstance, inst);
+                //System.out.println("Frame so far:"+tmp);
+                throw new RuntimeException("Attempted to cast to ObjectValue:"+popped.getClass().getCanonicalName());
+            }
             tmp.addLocal(instance);
         }
         for (int i = 0; i < len; i++) {

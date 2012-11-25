@@ -80,6 +80,7 @@ public class LoadAndExecuteInstructions {
             intp = new ConcolicInterpreter(cnames);
             inputStream = new ObjectInputStream(new FileInputStream(Config.instance.traceFileName));
 
+            System.out.println("Starting INST walk.");
             Instruction inst, next;
             inst=readInst(inputStream);
             next=readInst(inputStream);
