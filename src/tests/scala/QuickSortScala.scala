@@ -30,6 +30,7 @@ object QuickSortScala {
       assert(data(i) <= data(i + 1))
       if (i < data.length - 2) check(i+1)
     }
+    check(0)
   }
 
   def main(args: Array[String]) {
