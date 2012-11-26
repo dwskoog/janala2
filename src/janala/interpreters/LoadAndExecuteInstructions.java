@@ -76,6 +76,7 @@ public class LoadAndExecuteInstructions {
             ClassNames cnames = (ClassNames)inputStream.readObject();
             inputStream.close();
             cnames.init();
+            System.out.println(cnames);
 
             intp = new ConcolicInterpreter(cnames);
             inputStream = new ObjectInputStream(new FileInputStream(Config.instance.traceFileName));
