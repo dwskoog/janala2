@@ -112,11 +112,11 @@ public class SnoopInstructionTransformer implements ClassFileTransformer {
         }
 
         if (toInstrument) {
-            //System.out.println("((((((((((((((( transform "+cname);
+            System.out.println("((((((((((((((( transform "+cname);
             ClassReader cr = new ClassReader(cbuf);
             ClassWriter cw = new ClassWriter(cr, 0);
-//            ClassVisitor cv = new SnoopInstructionClassAdapter(cw);
-            ClassVisitor cv = new SnoopInstructionClassAdapter(new TraceClassVisitor(cw,new PrintWriter( System.err )));
+            ClassVisitor cv = new SnoopInstructionClassAdapter(cw);
+//            ClassVisitor cv = new SnoopInstructionClassAdapter(new TraceClassVisitor(cw,new PrintWriter( System.err )));
             cr.accept(cv, 0);
 
             byte[] ret = cw.toByteArray();
