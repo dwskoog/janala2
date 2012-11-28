@@ -12,8 +12,8 @@ echo "Now testing $YOURPGM"
 
 for ($i=1; $i -le $iter; $i++ ) {
   echo "[Input $i]"
-  &java -javaagent:"lib/iagent.jar"  -cp "$CLASSPATH_AGENT_RUN" -ea $YOURPGM
-  &java ('-Djanala.mainClass="'+$YOURPGM+'"') ('-Djanala.iteration=$i') -cp ('"'+$CLASSPATH+'"') -ea janala.interpreters.LoadAndExecuteInstructions
+  &java -javaagent:"lib/iagent.jar"  -cp ('"'+$CLASSPATH_AGENT_RUN+'"') -ea $YOURPGM
+  &java ('-Djanala.mainClass="'+$YOURPGM+'"') ('-Djanala.iteration='+$i) -cp ('"'+$CLASSPATH+'"') -ea janala.interpreters.LoadAndExecuteInstructions
   
 
   if (Test-Path history) {

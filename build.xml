@@ -85,7 +85,7 @@
     <target depends="build-project" name="build-tests">
         <echo message="${ant.project.name}: ${ant.file}"/>
 
-        <scalac srcdir="src/tests" destdir="out/production/tests" debuginfo="">
+        <scalac srcdir="src/tests" destdir="out/production/tests" debuginfo="true">
             <classpath refid="janala.classpath"/>
             <include name="**/*.scala"/>
             <include name="**/*.java"/>
