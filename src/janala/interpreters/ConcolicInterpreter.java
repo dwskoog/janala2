@@ -1225,6 +1225,7 @@ public class ConcolicInterpreter implements IVisitor {
             Value value;
             if (inst.desc.startsWith("D") || inst.desc.startsWith("J")) {
                 value = currentFrame.pop2();
+                //currentFrame.pop2(); //TODO WHAT THE HELL?
             } else {
                 value = currentFrame.pop();
             }
