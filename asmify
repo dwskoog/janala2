@@ -25,4 +25,4 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-java -classpath lib/asm-all-3.3.1.jar:out/production/janala/ org.objectweb.asm.util.ASMifierClassVisitor janala.scratchpad.$*
+java -classpath lib/asm-all-3.3.1.jar:out/production/janala/:out/production/tests org.objectweb.asm.util.ASMifierClassVisitor janala.scratchpad.$*
