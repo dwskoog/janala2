@@ -21,6 +21,5 @@ object RangeSimpleTest {
   def main(args: Array[String]) {
     val r:Range = createRange()
     println("Created Range "+r.start+" to "+r.end)
-    0
   }
 }
