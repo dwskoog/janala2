@@ -2,7 +2,7 @@ package tests.scala
 
 import janala.Main
 
-object CaseClass {
+object MatchTest {
 
   def main(args: Array[String]) {
     val n = Main.readInt(0)
