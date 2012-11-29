@@ -5,8 +5,13 @@ $CLASSPATH="$CLASSPATH_BASE;lib/trove-3.0.3.jar;lib/choco-solver-2.1.4.jar;lib/i
 $iter=$args[0]
 $YOURPGM=$args[1]
 
-[void]{rm -Force inputs
-rm -Force history}
+Remove-Item inputs -ErrorAction SilentlyContinue
+Remove-Item history -ErrorAction SilentlyContinue
+
+if (Test-Path inputs) {
+  echo "Dummy!"
+  exit
+}
 
 echo "Now testing $YOURPGM"
 

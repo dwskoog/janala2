@@ -1,5 +1,7 @@
 package tests.scala
 
+import janala.Main
+
 /**
  * Created with IntelliJ IDEA.
  * User: David
@@ -9,8 +11,13 @@ package tests.scala
  */
 object ForComprehensionTest {
   def main(args: Array[String]) {
-    for (i <- 0 to 10) {
-      println(i)
+    val high = Main.readInt(10)
+    val lo = Main.readInt(0)
+    Main.MakeSymbolic(high)
+    Main.MakeSymbolic(lo)
+    for (i <- lo to high) {
+      Main.MakeSymbolic(i)
+      if (i < 0) println(-i) else println(i)
     }
   }
 }

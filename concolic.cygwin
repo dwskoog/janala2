@@ -28,8 +28,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-export PATH=$PATH:yices-2.0.0/bin
-CLASSPATH="out/production/tests"
+export PATH=$PATH:yices-2.1.0/bin
+CLASSPATH_BASE="out/production/tests;lib/asm-all-3.3.1.jar;lib/scala-library.jar;lib/commons-lang3-3.1.jar"
+CLASSPATH_AGENT_RUN="$CLASSPATH_BASE;out/production/janala"
+CLASSPATH="$CLASSPATH_BASE;lib/trove-3.0.3.jar;lib/choco-solver-2.1.4.jar;lib/iagent.jar"
 iter=$1
 YOURPGM=$2
 

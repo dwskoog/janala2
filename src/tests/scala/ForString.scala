@@ -16,6 +16,7 @@ object ForString {
     Main.MakeSymbolic(strs(1))
     Main.MakeSymbolic(strs(2))
     for (str <- strs) {
+      Main.MakeSymbolic(str.charAt(0))
       if (str.charAt(0).isUpper) {
         println("foo")
       } else {

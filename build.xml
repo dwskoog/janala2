@@ -64,7 +64,12 @@
 
     <target name="clean">
         <delete dir="out"/>
+        <delete dir="testdata"/>
+        <mkdir dir="testdata"/>
         <delete file="lib/iagent.jar"/>
+        <delete file="trace"/>
+        <delete file="trace.aux"/>
+        <delete file="inputs"/>
     </target>
 
     <target name="build" depends="build-project,build-tests, packup"/>
