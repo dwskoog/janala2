@@ -48,46 +48,7 @@ import java.security.ProtectionDomain;
 public class SnoopInstructionTransformer implements ClassFileTransformer {
 
 	public static void premain(String agentArgs, Instrumentation inst) {
-        //System.out.println("calling premain");
 		inst.addTransformer(new SnoopInstructionTransformer());
-	}
-
-	public byte[] transformOld(ClassLoader loader,String cname, Class<?> c, ProtectionDomain d, byte[] cbuf)
-            throws IllegalClassFormatException {
-
-		if (!cname.startsWith("janala")
-                && !cname.startsWith("gnu/trove")
-                && !cname.startsWith("java/util")
-                && !cname.startsWith("java/io")
-                && !cname.startsWith("java/security")
-                && !cname.startsWith("sun/")
-                && !cname.startsWith("javax/security")
-                && !cname.startsWith("sun/security")
-                && !cname.startsWith("sun/reflect")
-                && !cname.startsWith("database/table/ConsistencyChecker")
-                && !cname.startsWith("com/apple/java")
-                && !cname.startsWith("java/lang")) {
-            //System.out.println("((((((((((((((( transform "+cname);
-            ClassReader cr = new ClassReader(cbuf);
-            ClassWriter cw = new ClassWriter(cr, 0);
-            ClassVisitor cv = new SnoopInstructionClassAdapter(cw);
-//            ClassVisitor cv = new SnoopInstructionClassAdapter(new TraceClassVisitor(cw,new PrintWriter( System.out )));
-            cr.accept(cv, 0);
-
-            byte[] ret = cw.toByteArray();
-//            try {
-//                FileOutputStream out = new FileOutputStream("tmp.class");
-//                out.write(ret);
-//                out.close();
-//            } catch(Exception e) {
-//                e.printStackTrace();
-//            }
-            //System.err.println(")))))))))))))) end transform "+cname);
-            return ret;
-        } else {
-            //System.out.println("--------------- skipping "+cname);
-        }
-		return cbuf;
 	}
 
     public byte[] transform(ClassLoader loader,String cname, Class<?> c, ProtectionDomain d, byte[] cbuf)
@@ -120,13 +81,6 @@ public class SnoopInstructionTransformer implements ClassFileTransformer {
             cr.accept(cv, 0);
 
             byte[] ret = cw.toByteArray();
-//            try {
-//                FileOutputStream out = new FileOutputStream("tmp.class");
-//                out.write(ret);
-//                out.close();
-//            } catch(Exception e) {
-//                e.printStackTrace();
-//            }
             //System.err.println(")))))))))))))) end transform "+cname);
             return ret;
         } else {
