@@ -9,6 +9,7 @@ package tests.scala
  */
 object SimplePredefTest {
   def main(args: Array[String]) {
-    println("Using Predef.println(String)")
+    val N = 4
+    println("Using Predef.println(String+int) "+N)
   }
 }
