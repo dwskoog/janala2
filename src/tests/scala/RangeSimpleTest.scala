@@ -2,14 +2,6 @@ package tests.scala
 
 import janala.Main
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: davidskoog
- * Date: 11/26/12
- * Time: 3:43 PM
- * To change this template use File | Settings | File Templates.
- */
 object RangeSimpleTest {
   def createRange() = {
     val i = Main.readInt(0)
@@ -27,7 +19,8 @@ object RangeSimpleTest {
   }
 
   def main(args: Array[String]) {
-    val r = createRange()
-    println(r.head)
+    val r:Range = createRange()
+    println("Created Range "+r.start+" to "+r.end)
+    0
   }
 }
