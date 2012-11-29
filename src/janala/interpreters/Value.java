@@ -34,6 +34,7 @@
 package janala.interpreters;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -54,6 +55,6 @@ public class Value {
 
     @Override
     public String toString() {
-        return new ReflectionToStringBuilder(this).toString();
+        return new ReflectionToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).toString();
     }
 }

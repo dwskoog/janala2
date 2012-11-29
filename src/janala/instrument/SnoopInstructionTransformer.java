@@ -37,7 +37,9 @@ import janala.config.Config;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.util.TraceClassVisitor;
 
+import java.io.PrintWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
@@ -110,11 +112,11 @@ public class SnoopInstructionTransformer implements ClassFileTransformer {
         }
 
         if (toInstrument) {
-            //System.out.println("((((((((((((((( transform "+cname);
+            System.out.println("((((((((((((((( transform "+cname);
             ClassReader cr = new ClassReader(cbuf);
             ClassWriter cw = new ClassWriter(cr, 0);
             ClassVisitor cv = new SnoopInstructionClassAdapter(cw);
-//            ClassVisitor cv = new SnoopInstructionClassAdapter(new TraceClassVisitor(cw,new PrintWriter( System.out )));
+//            ClassVisitor cv = new SnoopInstructionClassAdapter(new TraceClassVisitor(cw,new PrintWriter( System.err )));
             cr.accept(cv, 0);
 
             byte[] ret = cw.toByteArray();
