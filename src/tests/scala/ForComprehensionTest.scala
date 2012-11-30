@@ -19,5 +19,6 @@ object ForComprehensionTest {
       Main.MakeSymbolic(i)
       if (i < 0) println(-i) else println(i)
     }
+    val s = for (x <- lo to high if x*x > 50) yield 2*x
   }
 }
