@@ -1,0 +1,15 @@
+./concolic 10 tests.scala.CaseClassTest
+./concolic 10 tests.scala.ForComprehensionTest
+./concolic 10 tests.scala.ForIntArray
+./concolic 10 tests.scala.ForString
+./concolic 10 tests.scala.FunctionTest
+./concolic 10 tests.scala.MatchTest
+./concolic 25 tests.scala.QuickSortScala
+./concolic 10 tests.scala.RangeForEachTest
+./concolic 10 tests.scala.RangeSimpleTest
+./concolic 10 tests.scala.RecursiveFactorial
+./concolic 10 tests.scala.SimpleMatchTest
+./concolic 10 tests.scala.SimplePredefTest
+./concolic 10 tests.scala.StringMatchTest
+./concolic 10 tests.scala.TailRecursiveFactorial
+
